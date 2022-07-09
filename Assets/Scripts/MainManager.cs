@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainManager : MonoBehaviour
 {
@@ -12,16 +13,26 @@ public class MainManager : MonoBehaviour
 
     public Text ScoreText;
     public GameObject GameOverText;
+    public Text HighScoreText;
+
+    public Button returnButton;
     
     private bool m_Started = false;
     private int m_Points;
     
     private bool m_GameOver = false;
 
-    
+    //private MainManager2 mainManager2;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (MainManager2.Instance != null)
+        {
+            HighScoreText.text = "Best Score : " + MainManager2.Instance.playerName + " : " + MainManager2.Instance.score;
+        }
+        //mainManager2 = GameObject.Find("Main Manager 2").GetComponent<MainManager2>();
+
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -70,7 +81,26 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
+        if (MainManager2.Instance != null && m_Points > MainManager2.Instance.score)
+        {
+            MainManager2.Instance.playerName = StaticVariables.playerName;
+            MainManager2.Instance.score = m_Points;
+            MainManager2.Instance.SaveRecord();
+        }
+        else if (MainManager2.Instance == null)
+        {
+            MainManager2.Instance.playerName = StaticVariables.playerName;
+            MainManager2.Instance.score = m_Points;
+            MainManager2.Instance.SaveRecord();
+        }
+
         m_GameOver = true;
         GameOverText.SetActive(true);
+        returnButton.gameObject.SetActive(true);
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
