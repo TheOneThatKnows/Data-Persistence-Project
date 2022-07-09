@@ -83,13 +83,13 @@ public class MainManager : MonoBehaviour
     {
         if (MainManager2.Instance != null && m_Points > MainManager2.Instance.score)
         {
-            MainManager2.Instance.playerName = StaticVariables.playerName;
+            MainManager2.Instance.playerName = MainManager2.Instance.playerNameTemp;
             MainManager2.Instance.score = m_Points;
             MainManager2.Instance.SaveRecord();
         }
         else if (MainManager2.Instance == null)
         {
-            MainManager2.Instance.playerName = StaticVariables.playerName;
+            MainManager2.Instance.playerName = MainManager2.Instance.playerNameTemp;
             MainManager2.Instance.score = m_Points;
             MainManager2.Instance.SaveRecord();
         }

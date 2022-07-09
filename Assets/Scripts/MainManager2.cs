@@ -7,6 +7,7 @@ public class MainManager2 : MonoBehaviour
 {
     public static MainManager2 Instance;
 
+    public string playerNameTemp;
     public string playerName;
     public int score = 0;
 

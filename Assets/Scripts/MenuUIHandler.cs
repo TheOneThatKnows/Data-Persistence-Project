@@ -41,7 +41,8 @@ public class MenuUIHandler : MonoBehaviour
     {
         // MainManager2.Instance.playerName = inputField.text;
         // StaticVariables.playerName = inputField.textComponent.text;
-        StaticVariables.playerName = inputField.text;
+        //StaticVariables.playerName = inputField.text;
+        MainManager2.Instance.playerNameTemp = inputField.text;
         SceneManager.LoadScene(1);
     }
 
@@ -55,16 +56,5 @@ public class MenuUIHandler : MonoBehaviour
 #else
         Application.Quit();
 #endif
-    }
-
-    public void SaveColorClicked()
-    {
-        // MainManager.Instance.SaveColor();
-    }
-
-    public void LoadColorClicked()
-    {
-        // MainManager.Instance.LoadColor();
-        // ColorPicker.SelectColor(MainManager.Instance.TeamColor);
     }
 }
